@@ -8,7 +8,7 @@ A hiring pipeline that ties job posting, AI resume screening, and live coding te
 
 Live frontend: [talentforge-frontend.onrender.com](https://talentforge-frontend.onrender.com/)
 
-Project walkthrough: [Canva presentation](https://canva.link/nsvnrfdcxes34m7) · [YouTube video](https://youtu.be/oFAwrTyHF_4)
+Project walkthrough: [Canva presentation](https://canva.link/nsvnrfdcxes34m7)
 
 ## What it does
 
