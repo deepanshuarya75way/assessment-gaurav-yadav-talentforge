@@ -1,5 +1,5 @@
 const Job = require('../models/job.model.js');
-const Question = require("../models/question.model.js");
+const Question  = require("../models/questiongen.model.js");
 
 
 const AI_API_URl = process.env.AI_API_URl;
