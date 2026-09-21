@@ -61,6 +61,30 @@ export default function JobQuestions({jobId}){
   };
  };
 
- 
+ return(
+  <div style={{width:900,height:800}}>
+    <h2>Interview Question</h2>
+
+    <button onClick={generat} disabled={loading}>
+      {loading? "Generating..": "Generat from Job descrtion"}
+    </button>
+
+    <div>
+      <input value={text}
+      onChange={e=>setText(e.target.value)}></input>
+    </div>
+
+    <button onClick={add}>Add</button>
+
+    {questions.map(queueMicrotask,i)=>{
+      <div
+      key={q._id}
+      style={{height:300,padding:10}}>
+      
+    }}
+  </div>
+
+  <div> </div>
+ )
  )
 
