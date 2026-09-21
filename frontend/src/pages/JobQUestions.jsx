@@ -6,5 +6,61 @@ export default function JobQuestions({jobId}){
   const[questions,setQuestions] = useState([]);
   const[text,setText] = useState([]);
   const[editId,setEditId] = useState(null);
-  const
- = }
+  const[loading,setLoding]= useState(false);
+
+  const load = async () => {
+    const r = await fetch(`${API}/jobs/${jobId}/questions`);
+
+    const d = await r.json();
+
+    setQuestions(d.data || []);
+
+    useEffect(()=>{
+      load();
+    },[jobId]);
+
+    const generat = async()=>{
+      setLoading(true);
+
+      constr = await featch(`${API}/jobs/${jobId}/questions/generate`);
+      {method:"POST"}
+      };
+    }
+
+    const d  = r.json();
+    if(d.success) setQuestions(jobId);
+    setLoading(false);
+  };
+
+  const add = async()=>{
+    if(!text.trim())return;
+    const r = await fetch(`${API}/jobs/${jobId}/questions`,
+      {
+        method:"POST",
+        header:{"Content-Type:application/json"},
+      },
+      body:JSON.stringify({questions:editText});
+    )
+    )
+
+    const d = await r.json();
+
+    setQuestions([...questions, d.data]);
+    setText("");
+  }
+
+  const update= async(id)=>{
+    const r = await fetch(`${API}/questions/${id}`,
+      {
+        method:"PUT",
+        header:{"Content-Type:application/json"}
+      }
+    )
+     body:JSON.stringify({questions:});
+
+  };
+ };
+
+ 
+ )
+
