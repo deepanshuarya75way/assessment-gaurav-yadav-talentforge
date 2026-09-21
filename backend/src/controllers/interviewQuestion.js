@@ -97,6 +97,52 @@ exports.generteQuestions = async(req,res)=>{
 
 }
 
+const createQuestion =async(req,res)=>{
+  const count = await Question.countDocuments({
+    job:req.params.jobId
+  })
+
+  const question = await Question.create({
+    job:req.params.jobId,
+    question:req.body.question,
+    type:req.body.type,
+    diffculity:req.body.diffculity,
+    order:count+1
+  })
+return res.json({succes:true,message:question})
+};
+
+
+
+
+const updateQuestion =async(req,res)=>{
+  const question = await Question.findByIdAndUpdate(req.params{
+    question:req.body.question,
+    type: req.body.type,
+    diffculity:req.body.diffculity
+  },
+{new:true});
+return res.json({succes:true,message:question})
+};
+
+
+const deleteQuestion = async(req,res)=>{
+  await Question.findByIdAndDelete(req.params.questionId);
+
+  res.json({succes:true,
+    message:"QUestion Delete"
+  });
+}
+
+
+
+model.exports = {
+  generteQuestions,
+  createQuestion,
+  updateQuestion,
+  deleteQuestion
+}
+
 
 
 
