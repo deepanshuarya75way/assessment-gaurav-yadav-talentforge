@@ -10,6 +10,7 @@ const questionRoute = require("./routes/question.routes");
 const progressRoute = require("./routes/progress.routes");
 const emailRoute = require("./routes/email.routes");
 const authRoute = require("./routes/auth.routes");
+const QuesGen = require("./routes/genquestion.route");
 
 // Middlewares
 const logger = require("./utils/logger");
