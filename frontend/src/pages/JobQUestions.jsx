@@ -76,15 +76,25 @@ export default function JobQuestions({jobId}){
 
     <button onClick={add}>Add</button>
 
-    {questions.map(queueMicrotask,i)=>{
+    {questions.map((queueMicrotask,i) =>{
       <div
       key={q._id}
       style={{height:300,padding:10}}>
-      
-    }}
-  </div>
 
-  <div> </div>
+        <b>Q{i+1}</b>{" "}
+        {editId == q._id ? (
+          <>
+          <input value={editText}
+          onChange={e=>setText(e.target.value)}
+          </>
+        )}
+
+        <button></button>
+     </div>
+    }
+  )
+
+  </div>
  )
  )
 

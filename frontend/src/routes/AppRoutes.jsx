@@ -30,6 +30,8 @@ import CreateJobs from "../pages/Hr/CreateJob";
 import HRCreateQuestion from "../pages/Hr/CreateQuestion";
 import HRDashboard from "../pages/Hr/Dashboard";
 
+import JobQuestions from "../pages/JobQUestions";
+
 
 function AppRoute() {
   return (
@@ -91,6 +93,7 @@ function AppRoute() {
         <Route path="/hr/profile" element={<HrProfilePage />} />
         <Route path="/hr/create" element={<CreateJobs />} />
         <Route path="/hr/create-question" element={<HRCreateQuestion />} />
+        <Route path="/hr/job-question" element={<JobQuestions />} />
       </Route>
 
       {/* ================= FALLBACK ================= */}
