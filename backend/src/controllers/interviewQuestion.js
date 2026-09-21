@@ -7,6 +7,8 @@ const AI_API_KEY = process.env.AI_API_KEY;
 const AI_MODEL = process.env.AI_MODEL;
 
 
+
+// generat question
 exports.generteQuestions = async(req,res)=>{
   try{
     const {jobId} = req.params;
@@ -107,6 +109,8 @@ exports.generteQuestions = async(req,res)=>{
 
 }
 
+
+// create question
 const createQuestion =async(req,res)=>{
   const count = await Question.countDocuments({
     job:req.params.jobId
@@ -124,7 +128,7 @@ return res.json({succes:true,message:question})
 
 
 
-
+// Update question
 const updateQuestion =async(req,res)=>{
   const question = await Question.findByIdAndUpdate(req.params{
     question:req.body.question,
@@ -136,6 +140,7 @@ return res.json({succes:true,message:question})
 };
 
 
+//Update question
 const deleteQuestion = async(req,res)=>{
   await Question.findByIdAndDelete(req.params.questionId);
 
@@ -144,6 +149,8 @@ const deleteQuestion = async(req,res)=>{
   });
 }
 
+
+//Get Question
 const getQuestions = async(req,res)=>{
   const question  = await Question.find({job:req.params.jobId});
   return res.json({succes:true,
