@@ -5,7 +5,10 @@ const QuestionGen = new mongoose.Schema({
   question: String,
   type: string,
   diffculity:string,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { 
+    type: Date, 
+    default: Date.now 
+  }
 });
 
-module.exports = mongoose.model("Question", QuestionGen);
+module.exports = mongoose.model("QuestionGen", QuestionGen);

@@ -10,7 +10,7 @@ const questionRoute = require("./routes/question.routes");
 const progressRoute = require("./routes/progress.routes");
 const emailRoute = require("./routes/email.routes");
 const authRoute = require("./routes/auth.routes");
-const QuesGen = require("./routes/genquestion.route");
+const QuestionGen = require("./routes/genquestion.route");
 
 // Middlewares
 const logger = require("./utils/logger");
@@ -27,11 +27,13 @@ app.use(
   })
 );
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Custom logger middleware
 app.use(logger);
+
 
 /* ---------- ROUTES ---------- */
 app.use("/api/auth", authRoute);
@@ -42,7 +44,7 @@ app.use("/api/questions", questionRoute);
 app.use("/api/test", testRoute);
 app.use("/api/progress", progressRoute);
 app.use("/api/email", emailRoute);
-app.use("/api", QuesGen)
+app.use("/api", QuestionGen)
 
 // Health check
 app.get("/", (req, res) => {

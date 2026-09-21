@@ -1,3 +1,4 @@
+const { json } = require('express');
 const Job = require('../models/job.model.js');
 const QuestionGen  = require("../models/questiongen.model.js");
 
@@ -50,37 +51,39 @@ const generteQuestions = async(req,res)=>{
     JOb description
     ${jobDescription}
     
-    Create 10 high qulity question based on job description
-    
-    requirement:
-    
-    1 Question mmust be relevent to then job description.
-    2 Conver technical skills mentioned inthe job description
-    3 include practical ad project based question
-    4 Do not include answer
-    5 Return only valid answer.
-    
-    JSOn formate:
-    {
-    "quetions": [
-    {
-    "question": question text,
-    type: technical,
-    difficulty:Easy
-    }
-    ]
-    }
-    
-    Allow technical and coding and projectbased and behvior.
-    type Easy/medium/hard `;
-
-    const aiRes = await fetch(AI_API_URl,{
-      method:"POST",
-      header:{``
-        Content-Type "application/json",
-        Authrization:`Barer ${AI_API_KEY}`
+      Create 10 high qulity question based on job description
+      
+      requirement:
+      
+      1 Question mmust be relevent to then job description.
+      2 Conver technical skills mentioned inthe job description
+      3 include practical ad project based question
+      4 Do not include answer
+      5 Return only valid answer.
+      
+      JSON formate:
+      {
+      "quetions": [
+      {
+      "question": question text,
+      type: technical,
+      difficulty:Easy
       }
-      body:JSON.stringify(){
+      ]
+      }
+      
+      Allow technical and coding and projectbased and behvior.
+      type Easy/medium/hard `;
+
+    const aiRes = await fetch(AI_API_URl,
+      {
+      method:"POST",
+      header:{
+        Content:"application/json"
+        Authrization:`Barer ${AI_API_KEY}`,
+      },
+
+      body:JSON.stringify()={
         model:AI_MODEL,
         temperature:0.3,
         message:[
@@ -94,17 +97,19 @@ const generteQuestions = async(req,res)=>{
         },
       ],
       },
+    })
       
 
     const question = await QuestionGen.insertMany(
-      data.question.map((q,i)=>{
-        job:job._id,,
-        question:q.question,
+      data.question.map((q,i)=>({
+        job:job._id,
+        question:q.questions,
         type:q.type,
         diffculity:q.diffculity
       })
-    )
-    res.status({succes:true,data:questions}) 
+     )
+    ),
+    res.status(200).json({succes:true,data:questions}) 
   })catch(error){
      return res.json({succes:500,
       message:error.message,
