@@ -13,7 +13,6 @@ import StudentSignupPage from "../pages/auth/StudentSignupPage";
 import HrSignupPage from "../pages/auth/HrSignupPage"
 
 // Student Pages
-
 import StudentDashboard from "../pages/student/Dashboard";
 import StudentProfile from "../pages/student/Profile";
 import StudentEditProfile from "../pages/student/EditProfile";
@@ -29,7 +28,6 @@ import HrProfilePage from "../pages/Hr/Profile";
 import CreateJobs from "../pages/Hr/CreateJob";
 import HRCreateQuestion from "../pages/Hr/CreateQuestion";
 import HRDashboard from "../pages/Hr/Dashboard";
-
 import JobQuestions from "../pages/JobQUestions";
 
 
@@ -93,7 +91,7 @@ function AppRoute() {
         <Route path="/hr/profile" element={<HrProfilePage />} />
         <Route path="/hr/create" element={<CreateJobs />} />
         <Route path="/hr/create-question" element={<HRCreateQuestion />} />
-        <Route path="/hr/job-question" element={<JobQuestions />} />
+        <Route path="/hr/job-question/:jobId" element={<JobQuestions />} />
       </Route>
 
       {/* ================= FALLBACK ================= */}
