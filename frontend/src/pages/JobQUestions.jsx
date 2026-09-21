@@ -40,7 +40,7 @@ export default function JobQuestions({jobId}){
         header:{"Content-Type:application/json"},
       },
       body:JSON.stringify({questions:editText});
-    )
+      )
     )
 
     const d = await r.json();

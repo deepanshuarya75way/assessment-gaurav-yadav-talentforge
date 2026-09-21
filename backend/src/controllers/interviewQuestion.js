@@ -87,8 +87,16 @@ exports.generteQuestions = async(req,res)=>{
       },
     });
 
+    const question = await Question.insertMany(
+      data.question.map((q,i)=>{
+        job:job._id,,
+        question:q.question,
+        type:q.type,
+      })
+    )
+
    
-    }
+    
     res.status({succes:true,data:questions}) 
 
   }cache(error){
