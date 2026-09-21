@@ -1,18 +1,25 @@
 const Job = require('../models/job.model.js');
-const Question  = require("../models/questiongen.model.js");
+const QuestionGen  = require("../models/questiongen.model.js");
 
 
+
+
+//To generat question we will used  llm model , instede manully add 
+// After generation , wee add into  hr dashboard where all question  see 
+// interviewr can edit and update question based on requirment 
+
+
+//  First , take api key and model from  env file
 const AI_API_URl = process.env.AI_API_URl;
 const AI_API_KEY = process.env.AI_API_KEY;
 const AI_MODEL = process.env.AI_MODEL;
 
 
 
-// generat question
-exports.generteQuestions = async(req,res)=>{
+//  Call llm model to generate api question
+const generteQuestions = async(req,res)=>{
   try{
     const {jobId} = req.params;
-
     const job = await Job.findById(jobId);
 
     if(!job){
@@ -69,13 +76,13 @@ exports.generteQuestions = async(req,res)=>{
 
     const aiRes = await fetch(AI_API_URl,{
       method:"POST",
-      header:{
-        Content-Type:"application/json",
+      header:{``
+        Content-Type "application/json",
         Authrization:`Barer ${AI_API_KEY}`
-      },
+      }
       body:JSON.stringify(){
         model:AI_MODEL,
-        temperature:0.4,
+        temperature:0.3,
         message:[
           {
           role:"system",
@@ -87,36 +94,32 @@ exports.generteQuestions = async(req,res)=>{
         },
       ],
       },
-    });
+      
 
-    const question = await Question.insertMany(
+    const question = await QuestionGen.insertMany(
       data.question.map((q,i)=>{
         job:job._id,,
         question:q.question,
         type:q.type,
+        diffculity:q.diffculity
       })
     )
-
-   
-    
     res.status({succes:true,data:questions}) 
-
-  }cache(error){
-     res.json({succes:500,
+  })catch(error){
+     return res.json({succes:500,
       message:error.message,
     });
   }
-
 }
 
 
 // create question
 const createQuestion =async(req,res)=>{
-  const count = await Question.countDocuments({
+  const count = await QuestionGen.countDocuments({
     job:req.params.jobId
   })
 
-  const question = await Question.create({
+  const question = await QuestionGen.create({
     job:req.params.jobId,
     question:req.body.question,
     type:req.body.type,
@@ -130,7 +133,7 @@ return res.json({succes:true,message:question})
 
 // Update question
 const updateQuestion =async(req,res)=>{
-  const question = await Question.findByIdAndUpdate(req.params{
+  const question = await QuestionGen.findByIdAndUpdate(req.params{
     question:req.body.question,
     type: req.body.type,
     diffculity:req.body.diffculity
@@ -140,26 +143,26 @@ return res.json({succes:true,message:question})
 };
 
 
-//Update question
+//Delete question 
 const deleteQuestion = async(req,res)=>{
-  await Question.findByIdAndDelete(req.params.questionId);
+  await QuestionGen.findByIdAndDelete(req.params.questionId);
 
   res.json({succes:true,
-    message:"QUestion Delete"
+    message:"Question Delete"
   });
 }
 
 
 //Get Question
 const getQuestions = async(req,res)=>{
-  const question  = await Question.find({job:req.params.jobId});
+  const question  = await QuestionGen.find({job:req.params.jobId});
   return res.json({succes:true,
-    data:questions,
+    data:question,
   })
 }
 
 
-
+// export all modules
 model.exports = {
   generteQuestions,
   createQuestion,

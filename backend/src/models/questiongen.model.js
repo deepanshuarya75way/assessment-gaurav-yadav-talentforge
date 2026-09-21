@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const questiongenSchema = new mongoose.Schema({
+const QuestionGen = new mongoose.Schema({
   jobId: { type: mongoose.Schema.Types.ObjectId, ref: "Job", required: true },
   question: String,
   type: string,
@@ -8,4 +8,4 @@ const questiongenSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model("Question", questiongenSchema);
+module.exports = mongoose.model("Question", QuestionGen);
