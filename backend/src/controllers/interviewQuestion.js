@@ -89,7 +89,7 @@ exports.generteQuestions = async(req,res)=>{
 
    
     }
-    const 
+    res.status({succes:true,data:questions}) 
 
   }cache(error){
      res.json({succes:500,
