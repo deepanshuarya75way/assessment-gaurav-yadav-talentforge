@@ -42,6 +42,7 @@ app.use("/api/questions", questionRoute);
 app.use("/api/test", testRoute);
 app.use("/api/progress", progressRoute);
 app.use("/api/email", emailRoute);
+app.use("/api", QuesGen)
 
 // Health check
 app.get("/", (req, res) => {

@@ -1,12 +1,13 @@
 const router = require("express").Router();
 
-const{generateQuestion,
+const{
   getQuestions,
-  createQues,
-  updateQue,
-  deleteQues,
   generteQuestions,
+  createQuestion,
+  updateQuestion,
+  deleteQuestions,
 } = require("../controllers/interviewQuestion");
+
 
 router.post(
   "/jobs/:jobId/questions/gen",generteQuestions
@@ -17,13 +18,13 @@ router.post(
 )
 
 router.post(
-  "/jobs/:jobId/questions/",createQues
+  "/jobs/:jobId/questions/",createQuestion
 )
 router.put(
-  "/question/:questionId",updateQue
+  "/question/:questionId",updateQuestion
 )
 router.delete(
-  "/question/:questionId",deleteQues
+  "/question/:questionId",deleteQuestions
 )
 
 module.exports = router;

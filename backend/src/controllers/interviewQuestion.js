@@ -3,9 +3,7 @@ const Question = require("../models/question.model.js");
 
 
 const AI_API_URl = process.env.AI_API_URl;
-
 const AI_API_KEY = process.env.AI_API_KEY;
-
 const AI_MODEL = process.env.AI_MODEL;
 
 
@@ -33,6 +31,8 @@ exports.generteQuestions = async(req,res)=>{
         message:"API_KEY is not found",
       })
     }
+
+
     const promot = `You are export technical interview 
     Create Inteview question based only on the following job description.
     JOB title:
@@ -91,8 +91,10 @@ exports.generteQuestions = async(req,res)=>{
     }
     const 
 
-  }.cache(){
-
+  }cache(error){
+     res.json({succes:500,
+      message:error.message,
+    });
   }
 
 }
@@ -134,13 +136,21 @@ const deleteQuestion = async(req,res)=>{
   });
 }
 
+const getQuestions = async(req,res)=>{
+  const question  = await Question.find({job:req.params.jobId});
+  return res.json({succes:true,
+    data:questions,
+  })
+}
+
 
 
 model.exports = {
   generteQuestions,
   createQuestion,
   updateQuestion,
-  deleteQuestion
+  deleteQuestion,
+  getQuestions
 }
 
 
